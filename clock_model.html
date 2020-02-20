@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用计时事件制作的电子时钟</title>
+<script>
+    function startTime() {
+        var now = new Date();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+
+        m = checkTime(m);
+        s = checkTime(s);
+
+        var nowStr = h + ":" + m + ":" + s;
+        document.getElementById("demo").innerHTML = nowStr;
+
+        //设置每0.5秒执行一次函数startTime()
+        setTimeout("startTime()", 500)
+    }
+
+    //为了美观，补足分秒前面的0
+    function checkTime(x) {
+        if (x < 10) {
+            return "0" + x;
+        }
+        return x;
+    }
+</script>
+</head>
+<body onload="startTime()">
+<h1 id="demo"></h1>
+</body>
+</html>
